@@ -1,36 +1,24 @@
-import type { Metadata } from 'next';
-import './globals.css';
-import '@/components/age-gate.css';
-import { Toaster } from '@/components/ui/toaster';
+import type { Metadata } from 'next'
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
+import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'FeedFlex',
-  description: 'Your flexible RSS feed viewer.',
-};
+  title: 'v0 App',
+  description: 'Created with v0',
+  generator: 'v0.app',
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700&family=Belleza&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="font-body antialiased bg-background text-foreground">
+    <html lang="en">
+      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         {children}
-        <Toaster />
       </body>
     </html>
-  );
+  )
 }
