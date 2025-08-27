@@ -9,8 +9,7 @@ export function AgeGate({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     setIsMounted(true);
-    const storedVerification = localStorage.getItem('ageVerified');
-    if (storedVerification === 'true') {
+    if (localStorage.getItem('ageVerified') === 'true') {
       setIsVerified(true);
     }
   }, []);
@@ -25,7 +24,7 @@ export function AgeGate({ children }: { children: React.ReactNode }) {
   };
 
   if (!isMounted) {
-    return null; // Don't render anything on the server or before hydration
+    return null;
   }
 
   if (isVerified) {
@@ -33,19 +32,15 @@ export function AgeGate({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <>
-      <div className="age-verify">
-        <div className="age-verify-content">
-          <h2>Age Verification</h2>
-          <p>This website may contain adult content and is intended for viewers 18 years or older.</p>
-          <div className="age-buttons">
-            <button className="age-btn enter" onClick={handleEnter}>I am 18 or older</button>
-            <button className="age-btn exit" onClick={handleExit}>I am under 18</button>
-          </div>
+    <div className="age-verify">
+      <div className="age-verify-content">
+        <h2>Age Verification</h2>
+        <p>This website may contain adult content and is intended for viewers 18 years or older.</p>
+        <div className="age-buttons">
+          <button className="age-btn enter" onClick={handleEnter}>I am 18 or older</button>
+          <button className="age-btn exit" onClick={handleExit}>I am under 18</button>
         </div>
       </div>
-      {/* Render children with display: none to ensure the page is fully loaded behind the modal */}
-      <div style={{ display: 'none' }}>{children}</div>
-    </>
+    </div>
   );
 }
