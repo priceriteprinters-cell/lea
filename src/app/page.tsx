@@ -709,7 +709,7 @@ export default function RSSReader() {
                 className="flex-1 text-white text-center py-2 sm:py-3 px-2 sm:px-4 rounded-full border-2 border-green-600 hover:border-green-500 hover:bg-green-500/10 transition-all bg-transparent text-[10px] sm:text-xs flex items-center justify-center gap-1"
               >
                 <a href="https://t.me/+WxLO3q9bnxJkYTZk" target="_blank" rel="noopener noreferrer">
-                  <Lock className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <Lock className="w-3 h-3 sm:w-4 sm:w-4" />
                   <span className="truncate">Ad-Free Zone</span>
                 </a>
               </Button>
@@ -750,48 +750,6 @@ export default function RSSReader() {
             </Badge>
           </div>
         </div>
-
-        {/* Content Source Input */}
-        <Card className="mb-6 sm:mb-8 bg-gray-900/80 border-red-900/50 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="text-white flex items-center gap-2 text-lg sm:text-xl">
-              <RefreshCw className="w-5 h-5 sm:w-6 sm:h-6 text-red-500" />
-              Content Source Feed
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Input
-                type="url"
-                value={rssUrl}
-                onChange={(e) => setRssUrl(e.target.value)}
-                placeholder="Enter content feed URL for exclusive leaks..."
-                className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 text-base sm:text-lg py-3"
-                onKeyPress={(e) => e.key === "Enter" && handleLoadFeed()}
-              />
-              <Button
-                onClick={handleLoadFeed}
-                disabled={loading || !rssUrl.trim()}
-                className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 min-w-[120px] py-3 px-4 sm:px-6 font-bold text-sm sm:text-base flex items-center justify-center gap-2"
-              >
-                {loading ? (
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                ) : (
-                  <>
-                    <Flame className="w-4 h-4" />
-                    LOAD LEAKS
-                  </>
-                )}
-              </Button>
-            </div>
-            {uploadProgress && (
-              <div className="mt-3 flex items-center gap-2 text-sm text-red-400 font-medium">
-                <Upload className="w-4 h-4" />
-                {uploadProgress}
-              </div>
-            )}
-          </CardContent>
-        </Card>
 
         {/* Error Message */}
         {error && (
@@ -882,7 +840,7 @@ export default function RSSReader() {
                               <div className="flex flex-col gap-2 text-xs sm:text-sm text-gray-500">
                                 {item.pubDate && (
                                   <div className="flex items-center gap-1">
-                                    <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
+                                    <Calendar className="w-3 h-3 sm:w-4 sm:w-4" />
                                     <span className="truncate">{formatDate(item.pubDate)}</span>
                                   </div>
                                 )}
@@ -900,7 +858,7 @@ export default function RSSReader() {
                                       rel="noopener noreferrer"
                                       className="flex items-center justify-center gap-1"
                                     >
-                                      <Download className="w-3 h-3 sm:w-4 sm:h-4" />
+                                      <Download className="w-3 h-3 sm:w-4 sm:w-4" />
                                       <span className="truncate">
                                         {item.link.includes("mega.nz")
                                           ? "Get Mega"
