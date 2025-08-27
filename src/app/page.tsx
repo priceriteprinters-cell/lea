@@ -567,8 +567,6 @@ export default function RSSReader() {
   }
 
   const renderAdvancedPost = (item: RSSItem, index: number) => {
-    const isRecent = item.pubDate && new Date(item.pubDate) > new Date(Date.now() - 24 * 60 * 60 * 1000)
-
     return (
       <div
         key={item.guid || index}
@@ -644,12 +642,6 @@ export default function RSSReader() {
               </button>
             </div>
 
-            {(item.text?.includes("RE-UP") || item.text?.includes("UPDATE") || isRecent) && (
-              <Badge className="bg-gradient-to-r from-red-500 to-pink-500 text-white font-bold text-[10px] sm:text-xs flex items-center gap-1 w-fit">
-                <Star className="w-3 h-3" />
-                Recently Updated
-              </Badge>
-            )}
           </div>
 
           <h3 className="text-sm sm:text-base lg:text-lg xl:text-xl font-bold bg-gradient-to-r from-red-400 via-pink-400 to-red-400 bg-clip-text text-transparent mb-3 sm:mb-4 leading-tight line-clamp-2">
@@ -684,7 +676,7 @@ export default function RSSReader() {
               <Button
                 variant="outline"
                 onClick={() => setShowTutorialModal(true)}
-                className="flex-1 text-foreground text-center py-2 sm:py-3 px-2 sm:px-4 rounded-full border-2 border-gray-600 hover:border-red-500 hover:bg-red-500/10 transition-all bg-transparent text-[10px] sm:text-xs flex items-center justify-center gap-1"
+                className="flex-1 text-white text-center py-2 sm:py-3 px-2 sm:px-4 rounded-full border-2 border-gray-600 hover:border-red-500 hover:bg-red-500/10 transition-all bg-gradient-to-r from-blue-500 to-cyan-500 font-semibold text-[10px] sm:text-xs flex items-center justify-center gap-1"
               >
                 <Shield className="w-3 h-3 sm:w-4 sm:w-4" />
                 <span className="truncate">How to Download</span>
@@ -703,7 +695,7 @@ export default function RSSReader() {
               <Button
                 asChild
                 variant="outline"
-                className="flex-1 text-white text-center py-2 sm:py-3 px-2 sm:px-4 rounded-full border-2 border-green-600 hover:border-green-500 hover:bg-green-500/10 transition-all bg-transparent text-[10px] sm:text-xs flex items-center justify-center gap-1"
+                className="flex-1 text-white text-center py-2 sm:py-3 px-2 sm:px-4 rounded-full border-2 border-green-600 hover:border-green-500 hover:bg-green-500/10 transition-all bg-gradient-to-r from-teal-400 to-yellow-200 font-semibold text-[10px] sm:text-xs flex items-center justify-center gap-1"
               >
                 <a href="https://t.me/+WxLO3q9bnxJkYTZk" target="_blank" rel="noopener noreferrer">
                   <Lock className="w-3 h-3 sm:w-4 sm:w-4" />
@@ -778,27 +770,6 @@ export default function RSSReader() {
         {/* Feed Content - Progressive Display with Infinite Scroll */}
         {(feed || progressiveItems.length > 0) && (
           <div>
-            {feed && (
-              <Card className="mb-8 bg-card border-border">
-                <CardHeader>
-                  <CardTitle className="text-foreground flex items-center gap-3 text-2xl">
-                    <Zap className="w-7 h-7 text-red-500" />
-                    {feed.title.replace("Posts Reserves - Telegram Channel", "EXCLUSIVE CONTENT HUB")}
-                  </CardTitle>
-                  {feed.description && <p className="text-muted-foreground text-lg">{stripHtml(feed.description)}</p>}
-                  <div className="flex gap-3">
-                    <Badge variant="secondary" className="w-fit bg-red-600 text-white font-bold">
-                      {progressiveItems.length} of {cachedItems.length || "Loading..."} Exclusive Leaks
-                    </Badge>
-                    <Badge className="bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold flex items-center gap-1">
-                      <Diamond className="w-4 h-4" />
-                      Premium Collection
-                    </Badge>
-                  </div>
-                </CardHeader>
-              </Card>
-            )}
-
             {/* Feed Items - Progressive Display */}
             {progressiveItems.length > 0 ? (
               <>
