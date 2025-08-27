@@ -71,11 +71,9 @@ export default function RSSReader() {
   const MAX_RETRIES = 3
 
   useEffect(() => {
-    // This check runs only on the client
     const storedVerification = localStorage.getItem("isAgeVerified") === "true"
     setIsVerified(storedVerification)
   }, [])
-
 
   const handleVerification = () => {
     localStorage.setItem("isAgeVerified", "true")
@@ -533,7 +531,7 @@ export default function RSSReader() {
   }, [loadMoreContent, hasMoreContent, loadingMore, loading])
 
   useEffect(() => {
-    if (isVerified && rssUrl) {
+    if (isVerified === true && rssUrl) {
       fetchRSSFeed(rssUrl)
     }
   }, [isVerified, rssUrl])
@@ -1020,5 +1018,3 @@ export default function RSSReader() {
     </div>
   )
 }
-
-    

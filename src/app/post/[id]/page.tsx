@@ -26,7 +26,7 @@ interface RSSItem {
 }
 
 export default function PostPage() {
-  const [isVerified, setIsVerified] = useState(false)
+  const [isVerified, setIsVerified] = useState<boolean | null>(null)
   const [post, setPost] = useState<RSSItem | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -36,7 +36,17 @@ export default function PostPage() {
   const postId = params.id as string
 
   useEffect(() => {
-    if (isVerified && postId) {
+    const storedVerification = localStorage.getItem("isAgeVerified") === "true";
+    setIsVerified(storedVerification);
+  }, []);
+
+  const handleVerification = () => {
+    localStorage.setItem("isAgeVerified", "true");
+    setIsVerified(true);
+  };
+
+  useEffect(() => {
+    if (isVerified === true && postId) {
       // In a real app, you'd fetch the specific post from your API
       // For now, we'll simulate loading the post
       const loadPost = async () => {
@@ -84,6 +94,7 @@ export default function PostPage() {
   }
 
   const stripHtml = (html: string) => {
+    if (typeof window === "undefined") return "";
     const tmp = document.createElement("div")
     tmp.innerHTML = html
     return tmp.textContent || tmp.innerText || ""
@@ -100,8 +111,12 @@ export default function PostPage() {
     }
   }
 
+  if (isVerified === null) {
+    return null; // Don't render anything until verification status is known
+  }
+  
   if (!isVerified) {
-    return <AgeVerification onVerified={() => setIsVerified(true)} />
+    return <AgeVerification onVerified={handleVerification} />
   }
 
   if (loading) {
