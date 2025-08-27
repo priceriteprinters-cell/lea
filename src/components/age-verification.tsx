@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button"
 
 interface AgeVerificationProps {
@@ -7,8 +8,18 @@ interface AgeVerificationProps {
 }
 
 export default function AgeVerification({ onVerified }: AgeVerificationProps) {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  
   const handleExit = () => {
     window.location.href = "https://www.google.com"
+  }
+
+  if (!isMounted) {
+    return null;
   }
 
   return (

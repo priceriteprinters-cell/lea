@@ -698,7 +698,7 @@ export default function RSSReader() {
                 className="flex-1 text-white text-center py-2 sm:py-3 px-2 sm:px-4 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 border-2 border-purple-400 shadow-lg hover:shadow-pink-500/30 font-semibold transition-all text-[10px] sm:text-xs flex items-center justify-center gap-1"
               >
                 <a href="https://t.me/+JCGqAfWyUtRlMGVk" target="_blank" rel="noopener noreferrer">
-                  <Crown className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <Crown className="w-3 h-3 sm:w-4 sm:w-4" />
                   <span className="truncate">VIP ACCESS</span>
                 </a>
               </Button>
