@@ -4,13 +4,13 @@ import { useState, useEffect } from 'react';
 import './age-gate.css';
 
 export function AgeGate({ children }: { children: React.ReactNode }) {
-  const [isVerified, setIsVerified] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const [isVerified, setIsVerified] = useState<boolean | null>(null);
 
   useEffect(() => {
-    setIsMounted(true);
     if (localStorage.getItem('ageVerified') === 'true') {
       setIsVerified(true);
+    } else {
+      setIsVerified(false);
     }
   }, []);
 
@@ -23,7 +23,7 @@ export function AgeGate({ children }: { children: React.ReactNode }) {
     window.location.href = 'https://www.google.com';
   };
 
-  if (!isMounted) {
+  if (isVerified === null) {
     return null;
   }
 
