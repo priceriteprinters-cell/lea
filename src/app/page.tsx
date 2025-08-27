@@ -557,6 +557,7 @@ export default function RSSReader() {
   }
 
   const stripHtml = (html: string) => {
+    if (typeof document === 'undefined') return html;
     const tmp = document.createElement("div")
     tmp.innerHTML = html
     return tmp.textContent || tmp.innerText || ""
@@ -688,7 +689,7 @@ export default function RSSReader() {
                 onClick={() => setShowTutorialModal(true)}
                 className="flex-1 text-white text-center py-2 sm:py-3 px-2 sm:px-4 rounded-full border-2 border-gray-600 hover:border-red-500 hover:bg-red-500/10 transition-all bg-transparent text-[10px] sm:text-xs flex items-center justify-center gap-1"
               >
-                <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
+                <Shield className="w-3 h-3 sm:w-4 sm:w-4" />
                 <span className="truncate">How to Download</span>
               </Button>
 
