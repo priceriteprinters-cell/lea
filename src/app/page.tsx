@@ -23,6 +23,7 @@ import {
   X,
 } from "lucide-react"
 import AgeVerification from "@/components/age-verification"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 interface RSSItem {
   title: string
@@ -48,6 +49,7 @@ interface RSSFeed {
 }
 
 export default function RSSReader() {
+  const [isMounted, setIsMounted] = useState(false)
   const [isVerified, setIsVerified] = useState<boolean | null>(null)
   const [rssUrl, setRssUrl] = useState("https://rsshub.app/telegram/channel/admavenpost")
   const [feed, setFeed] = useState<RSSFeed | null>(null)
@@ -71,10 +73,11 @@ export default function RSSReader() {
   const MAX_RETRIES = 3
 
   useEffect(() => {
+    setIsMounted(true)
     const storedVerification = localStorage.getItem("isAgeVerified") === "true"
     setIsVerified(storedVerification)
   }, [])
-
+  
   const handleVerification = () => {
     localStorage.setItem("isAgeVerified", "true")
     setIsVerified(true)
@@ -569,7 +572,7 @@ export default function RSSReader() {
     return (
       <div
         key={item.guid || index}
-        className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden border border-red-900/30 shadow-2xl hover:shadow-red-500/20 transition-all hover:border-red-500/50 hover:scale-[1.02] w-full"
+        className="bg-card rounded-2xl overflow-hidden border border-red-900/30 shadow-2xl hover:shadow-red-500/20 transition-all hover:border-red-500/50 hover:scale-[1.02] w-full"
       >
         {/* Media Grid */}
         {item.media && item.media.length > 0 && (
@@ -612,7 +615,7 @@ export default function RSSReader() {
           {/* Header Section */}
           <div className="flex flex-col gap-2 mb-3 sm:mb-4">
             <div className="flex items-center justify-between">
-              <div className="text-gray-300 text-xs sm:text-sm flex items-center gap-1 font-medium">
+              <div className="text-muted-foreground text-xs sm:text-sm flex items-center gap-1 font-medium">
                 <Calendar className="w-3 h-3 sm:w-4 sm:h-4 text-red-400" />
                 {formatDate(item.pubDate)}
               </div>
@@ -687,7 +690,7 @@ export default function RSSReader() {
               <Button
                 variant="outline"
                 onClick={() => setShowTutorialModal(true)}
-                className="flex-1 text-white text-center py-2 sm:py-3 px-2 sm:px-4 rounded-full border-2 border-gray-600 hover:border-red-500 hover:bg-red-500/10 transition-all bg-transparent text-[10px] sm:text-xs flex items-center justify-center gap-1"
+                className="flex-1 text-foreground text-center py-2 sm:py-3 px-2 sm:px-4 rounded-full border-2 border-gray-600 hover:border-red-500 hover:bg-red-500/10 transition-all bg-transparent text-[10px] sm:text-xs flex items-center justify-center gap-1"
               >
                 <Shield className="w-3 h-3 sm:w-4 sm:w-4" />
                 <span className="truncate">How to Download</span>
@@ -720,8 +723,8 @@ export default function RSSReader() {
     )
   }
 
-  if (isVerified === null) {
-    return null; // Don't render anything until verification status is known
+  if (!isMounted) {
+    return null;
   }
   
   if (!isVerified) {
@@ -729,14 +732,18 @@ export default function RSSReader() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-900/20 text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="container mx-auto px-4 py-6 sm:py-8">
+        <div className="flex justify-between items-center mb-8 sm:mb-12">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black bg-gradient-to-r from-red-500 via-pink-500 to-red-600 bg-clip-text text-transparent tracking-tight flex items-center gap-3">
+                <Flame className="w-12 h-12 sm:w-16 sm:h-16 text-red-500" />
+                DIRECT LEAKS
+            </h1>
+            <ThemeToggle />
+        </div>
         <div className="text-center mb-8 sm:mb-12">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black bg-gradient-to-r from-red-500 via-pink-500 to-red-600 bg-clip-text text-transparent mb-4 sm:mb-6 tracking-tight flex items-center justify-center gap-3">
-            <Flame className="w-12 h-12 sm:w-16 sm:h-16 text-red-500" />
-            DIRECT LEAKS
-          </h1>
-          <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto font-medium px-4">
+          
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto font-medium px-4">
             Premium Content • Exclusive Access • Latest Leaks
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 mt-4">
@@ -753,12 +760,12 @@ export default function RSSReader() {
 
         {/* Error Message */}
         {error && (
-          <Card className="mb-8 bg-red-900/20 border-red-700">
+          <Card className="mb-8 bg-destructive/10 border-destructive">
             <CardContent className="pt-6">
-              <p className="text-red-400">
+              <p className="text-destructive-foreground">
                 <strong>Error:</strong> {error}
               </p>
-              <p className="text-red-300 text-sm mt-2">
+              <p className="text-destructive-foreground/80 text-sm mt-2">
                 Please check the content feed URL and try again. Make sure the feed is accessible and properly
                 formatted.
               </p>
@@ -770,7 +777,7 @@ export default function RSSReader() {
         {loading && progressiveItems.length === 0 && (
           <div className="flex justify-center items-center py-12">
             <Loader2 className="w-8 h-8 animate-spin text-red-500" />
-            <span className="ml-2 text-gray-400">Loading exclusive content...</span>
+            <span className="ml-2 text-muted-foreground">Loading exclusive content...</span>
           </div>
         )}
 
@@ -778,13 +785,13 @@ export default function RSSReader() {
         {(feed || progressiveItems.length > 0) && (
           <div>
             {feed && (
-              <Card className="mb-8 bg-gradient-to-r from-gray-900 to-gray-800 border-red-900/50">
+              <Card className="mb-8 bg-card border-border">
                 <CardHeader>
-                  <CardTitle className="text-white flex items-center gap-3 text-2xl">
+                  <CardTitle className="text-foreground flex items-center gap-3 text-2xl">
                     <Zap className="w-7 h-7 text-red-500" />
                     {feed.title.replace("Posts Reserves - Telegram Channel", "EXCLUSIVE CONTENT HUB")}
                   </CardTitle>
-                  {feed.description && <p className="text-gray-300 text-lg">{stripHtml(feed.description)}</p>}
+                  {feed.description && <p className="text-muted-foreground text-lg">{stripHtml(feed.description)}</p>}
                   <div className="flex gap-3">
                     <Badge variant="secondary" className="w-fit bg-red-600 text-white font-bold">
                       {progressiveItems.length} of {cachedItems.length || "Loading..."} Exclusive Leaks
@@ -801,14 +808,14 @@ export default function RSSReader() {
             {/* Feed Items - Progressive Display */}
             {progressiveItems.length > 0 ? (
               <>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
                   {progressiveItems.map((item, index) =>
                     item.media && item.media.length > 0 ? (
                       renderAdvancedPost(item, index)
                     ) : (
                       <Card
                         key={item.guid || index}
-                        className="bg-gray-800/50 border-gray-700 hover:bg-gray-800/70 transition-colors w-full"
+                        className="bg-card border-border hover:bg-muted/50 transition-colors w-full"
                       >
                         <CardContent className="p-3 sm:p-4 lg:p-6">
                           <div className="flex flex-col gap-3 sm:gap-4">
@@ -818,7 +825,7 @@ export default function RSSReader() {
                                 <img
                                   src={item.image || "/placeholder.svg"}
                                   alt={stripHtml(item.title)}
-                                  className="w-full h-full object-cover bg-gray-900"
+                                  className="w-full h-full object-cover bg-muted"
                                   onError={(e) => {
                                     const target = e.target as HTMLImageElement
                                     if (item.originalImage && target.src !== item.originalImage) {
@@ -833,11 +840,11 @@ export default function RSSReader() {
 
                             {/* Content */}
                             <div className="flex-1">
-                              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-white mb-2 sm:mb-3 line-clamp-2 leading-tight">
+                              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-foreground mb-2 sm:mb-3 line-clamp-2 leading-tight">
                                 {stripHtml(item.title)}
                               </h3>
 
-                              <div className="flex flex-col gap-2 text-xs sm:text-sm text-gray-500">
+                              <div className="flex flex-col gap-2 text-xs sm:text-sm text-muted-foreground">
                                 {item.pubDate && (
                                   <div className="flex items-center gap-1">
                                     <Calendar className="w-3 h-3 sm:w-4 sm:w-4" />
@@ -850,7 +857,7 @@ export default function RSSReader() {
                                     variant="outline"
                                     size="sm"
                                     asChild
-                                    className="border-gray-600 text-gray-300 hover:bg-gray-700 bg-transparent w-full text-xs py-2"
+                                    className="border-border text-foreground hover:bg-accent bg-transparent w-full text-xs py-2"
                                   >
                                     <a
                                       href={item.link}
@@ -885,10 +892,10 @@ export default function RSSReader() {
                     {loadingMore ? (
                       <div className="flex items-center gap-3">
                         <Loader2 className="w-6 h-6 animate-spin text-red-500" />
-                        <span className="text-gray-400 font-medium">Loading more exclusive content...</span>
+                        <span className="text-muted-foreground font-medium">Loading more exclusive content...</span>
                       </div>
                     ) : (
-                      <div className="text-gray-500 text-sm">Scroll down for more content</div>
+                      <div className="text-muted-foreground text-sm">Scroll down for more content</div>
                     )}
                   </div>
                 )}
@@ -896,17 +903,17 @@ export default function RSSReader() {
                 {!hasMoreContent && progressiveItems.length > 0 && (
                   <div className="flex justify-center items-center py-8 mt-8">
                     <div className="text-center">
-                      <div className="text-gray-400 font-medium mb-2">🔥 You've seen all exclusive content!</div>
-                      <div className="text-gray-500 text-sm">Check back later for new leaks</div>
+                      <div className="text-muted-foreground font-medium mb-2">🔥 You've seen all exclusive content!</div>
+                      <div className="text-muted-foreground/80 text-sm">Check back later for new leaks</div>
                     </div>
                   </div>
                 )}
               </>
             ) : (
               !loading && (
-                <Card className="bg-gray-800/50 border-gray-700">
+                <Card className="bg-card border-border">
                   <CardContent className="pt-6 text-center">
-                    <p className="text-gray-400">
+                    <p className="text-muted-foreground">
                       {error
                         ? "Unable to load posts at this time. Please try again later."
                         : "No exclusive content found in this feed."}
@@ -928,16 +935,16 @@ export default function RSSReader() {
       {/* Tutorial Video Modal */}
       {showTutorialModal && (
         <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
-          <div className="bg-gray-900 rounded-lg w-full max-w-4xl max-h-[90vh] flex flex-col">
+          <div className="bg-background rounded-lg w-full max-w-4xl max-h-[90vh] flex flex-col">
             {/* Modal Header */}
-            <div className="flex justify-between items-center p-6 border-b border-gray-700">
-              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+            <div className="flex justify-between items-center p-6 border-b border-border">
+              <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
                 <Shield className="w-6 h-6 text-red-500" />
                 How to Download Tutorial
               </h2>
               <button
                 onClick={() => setShowTutorialModal(false)}
-                className="text-gray-400 hover:text-white transition-colors p-2"
+                className="text-muted-foreground hover:text-foreground transition-colors p-2"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -954,9 +961,9 @@ export default function RSSReader() {
             </div>
 
             {/* Modal Footer */}
-            <div className="p-6 border-t border-gray-700">
-              <div className="text-gray-300 text-sm mb-4">
-                <p className="font-semibold mb-2">📋 Quick Steps:</p>
+            <div className="p-6 border-t border-border">
+              <div className="text-muted-foreground text-sm mb-4">
+                <p className="font-semibold mb-2 text-foreground">📋 Quick Steps:</p>
                 <ul className="list-disc list-inside space-y-1 text-xs">
                   <li>Click the "GET MEGA" button on any post</li>
                   <li>Complete the verification steps if required</li>
