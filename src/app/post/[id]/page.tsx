@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, Share2, Download, Crown, Lock, Shield, ArrowLeft, Flame, Star, Eye } from "lucide-react"
 import AgeVerification from "@/components/age-verification"
+import Image from "next/image"
 
 interface RSSItem {
   title: string
@@ -233,7 +234,7 @@ export default function PostPage() {
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-3"
                     >
-                      <Download className="w-5 h-5" />
+                      <Image src="https://cdn.freebiesupply.com/logos/large/2x/mega-icon-logo-png-transparent.png" alt="Mega" width={20} height={20} className="w-5 h-5"/>
                       {post.link.includes("mega.nz")
                         ? "GET MEGA"
                         : post.link.includes("drive.google.com")

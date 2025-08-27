@@ -24,6 +24,7 @@ import {
 } from "lucide-react"
 import AgeVerification from "@/components/age-verification"
 import { ThemeToggle } from "@/components/theme-toggle"
+import Image from "next/image"
 
 interface RSSItem {
   title: string
@@ -660,7 +661,7 @@ export default function RSSReader() {
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2"
                 >
-                  <Download className="w-3 h-3 sm:w-4 sm:w-4" />
+                  <Image src="https://cdn.freebiesupply.com/logos/large/2x/mega-icon-logo-png-transparent.png" alt="Mega" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4"/>
                   {item.link.includes("mega.nz")
                     ? "GET MEGA"
                     : item.link.includes("drive.google.com")
@@ -830,7 +831,7 @@ export default function RSSReader() {
                                       rel="noopener noreferrer"
                                       className="flex items-center justify-center gap-1"
                                     >
-                                      <Download className="w-3 h-3 sm:w-4 sm:w-4" />
+                                      <Image src="https://cdn.freebiesupply.com/logos/large/2x/mega-icon-logo-png-transparent.png" alt="Mega" width={16} height={16} className="w-3 h-3 sm:w-4 sm:h-4"/>
                                       <span className="truncate">
                                         {item.link.includes("mega.nz")
                                           ? "Get Mega"
