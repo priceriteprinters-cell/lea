@@ -76,8 +76,12 @@ export default function RSSReader() {
 
   useEffect(() => {
     setIsMounted(true)
-    const storedVerification = localStorage.getItem("isAgeVerified") === "true"
-    setIsVerified(storedVerification)
+    const storedVerification = localStorage.getItem("isAgeVerified")
+    if (storedVerification) {
+      setIsVerified(storedVerification === 'true')
+    } else {
+      setIsVerified(false)
+    }
   }, [])
   
   const handleVerification = () => {
@@ -711,7 +715,7 @@ export default function RSSReader() {
     )
   }
 
-  if (!isMounted) {
+  if (!isMounted || isVerified === null) {
     return null;
   }
   
@@ -723,8 +727,8 @@ export default function RSSReader() {
     <div className="min-h-screen bg-background text-foreground">
       <div className="container mx-auto px-4 py-6 sm:py-8">
         <div className="flex justify-between items-center mb-8 sm:mb-12">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black bg-gradient-to-r from-red-500 via-pink-500 to-red-600 bg-clip-text text-transparent tracking-tight flex items-center gap-3">
-                <Flame className="w-12 h-12 sm:w-16 sm:h-16 text-red-500" />
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black bg-gradient-to-r from-red-500 via-pink-500 to-red-600 bg-clip-text text-transparent tracking-tight flex items-center gap-3">
+                <Flame className="w-10 h-10 sm:w-16 sm:h-16 text-red-500" />
                 DIRECT LEAKS
             </h1>
             <ThemeToggle />
