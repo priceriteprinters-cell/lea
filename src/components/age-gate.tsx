@@ -8,10 +8,10 @@ export function AgeGate({ children }: { children: React.ReactNode }) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
     if (localStorage.getItem('ageVerified') === 'true') {
       setIsVerified(true);
     }
+    setIsClient(true);
   }, []);
 
   const handleEnter = () => {
@@ -24,10 +24,9 @@ export function AgeGate({ children }: { children: React.ReactNode }) {
   };
 
   if (!isClient) {
-    // Render nothing on the server to avoid mismatch
     return null;
   }
-  
+
   if (isVerified) {
     return <>{children}</>;
   }
