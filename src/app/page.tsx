@@ -667,7 +667,7 @@ export default function RSSReader() {
                       ? "GET DRIVE"
                       : item.link.includes("mediafire.com")
                         ? "GET MEDIAFIRE"
-                        : "GET DOWNLOAD"}
+                        : "GET MEGA"}
                 </a>
               </Button>
             )}
@@ -838,7 +838,7 @@ export default function RSSReader() {
                                             ? "Get Drive"
                                             : item.link.includes("mediafire.com")
                                               ? "Get MediaFire"
-                                              : "Get Download"}
+                                              : "GET MEGA"}
                                       </span>
                                     </a>
                                   </Button>

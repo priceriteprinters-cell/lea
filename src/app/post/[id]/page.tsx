@@ -175,12 +175,7 @@ export default function PostPage() {
                     <Flame className="w-4 h-4" />
                     LEAKED
                   </Badge>
-                  {isRecent && (
-                    <Badge className="bg-green-600 text-white font-bold text-sm px-3 py-1 flex items-center gap-1">
-                      <Star className="w-4 h-4" />
-                      Recently Updated
-                    </Badge>
-                  )}
+                  
                 </div>
                 <div className="w-full h-64 sm:h-80 lg:h-96 bg-gray-900 overflow-hidden relative group">
                   <img
@@ -245,7 +240,7 @@ export default function PostPage() {
                           ? "GET DRIVE"
                           : post.link.includes("mediafire.com")
                             ? "GET MEDIAFIRE"
-                            : "GET DOWNLOAD"}
+                            : "GET MEGA"}
                     </a>
                   </Button>
                 )}
