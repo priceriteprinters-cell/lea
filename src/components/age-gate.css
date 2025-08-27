@@ -1,0 +1,86 @@
+:root {
+  --age-verify-primary: 284 12% 54%;
+  --age-verify-light: 0 0% 98%;
+}
+
+.dark {
+  --age-verify-primary: 284 12% 64%;
+  --age-verify-light: 0 0% 98%;
+}
+
+.age-verify {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  text-align: center;
+}
+
+.age-verify-content {
+    background: hsl(var(--background));
+    padding: 2rem;
+    border-radius: var(--radius);
+    max-width: 500px;
+}
+
+.age-verify h2 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: hsl(var(--age-verify-primary));
+  font-family: 'Belleza', sans-serif;
+}
+
+.age-verify p {
+    margin-bottom: 2rem;
+    color: hsl(var(--foreground));
+}
+
+.age-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.age-btn {
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-family: 'Alegreya', serif;
+}
+
+.age-btn.enter {
+  background: hsl(var(--age-verify-primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.age-btn.exit {
+  background: transparent;
+  color: hsl(var(--age-verify-light));
+  border: 1px solid hsl(var(--age-verify-light));
+}
+
+.age-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .age-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  .age-btn {
+    width: 100%;
+  }
+}
