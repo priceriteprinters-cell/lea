@@ -48,7 +48,7 @@ interface RSSFeed {
 }
 
 export default function RSSReader() {
-  const [isVerified, setIsVerified] = useState(false)
+  const [isVerified, setIsVerified] = useState<boolean | null>(null)
   const [rssUrl, setRssUrl] = useState("https://rsshub.app/telegram/channel/admavenpost")
   const [feed, setFeed] = useState<RSSFeed | null>(null)
   const [progressiveItems, setProgressiveItems] = useState<RSSItem[]>([])
@@ -70,6 +70,18 @@ export default function RSSReader() {
   const BATCH_SIZE = 12 // Posts per batch
   const MAX_RETRIES = 3
 
+  useEffect(() => {
+    // This check runs only on the client
+    const storedVerification = localStorage.getItem("isAgeVerified") === "true"
+    setIsVerified(storedVerification)
+  }, [])
+
+
+  const handleVerification = () => {
+    localStorage.setItem("isAgeVerified", "true")
+    setIsVerified(true)
+  }
+  
   const uploadImageToImgbb = async (imageUrl: string): Promise<string | null> => {
     try {
       console.log("[v0] Uploading image:", imageUrl)
@@ -524,7 +536,7 @@ export default function RSSReader() {
     if (isVerified && rssUrl) {
       fetchRSSFeed(rssUrl)
     }
-  }, [isVerified])
+  }, [isVerified, rssUrl])
 
   const handleLoadFeed = () => {
     if (rssUrl.trim()) {
@@ -709,8 +721,12 @@ export default function RSSReader() {
     )
   }
 
+  if (isVerified === null) {
+    return null; // Don't render anything until verification status is known
+  }
+  
   if (!isVerified) {
-    return <AgeVerification onVerified={() => setIsVerified(true)} />
+    return <AgeVerification onVerified={handleVerification} />
   }
 
   return (
@@ -1004,3 +1020,5 @@ export default function RSSReader() {
     </div>
   )
 }
+
+    
