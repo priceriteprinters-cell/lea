@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useEffect, useCallback, useRef } from "react"
@@ -653,7 +654,7 @@ export default function RSSReader() {
             {item.link && (
               <Button
                 asChild
-                className="w-full text-white text-center font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-full shadow-lg hover:shadow-xl transition-all bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 transform hover:scale-105 border-2 border-red-500 text-xs sm:text-sm"
+                className="w-full text-black text-center font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-full shadow-lg hover:shadow-xl transition-all bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-amber-500 hover:to-yellow-400 transform hover:scale-105 border-2 border-yellow-600 text-xs sm:text-sm"
               >
                 <a
                   href={item.link}
@@ -687,7 +688,7 @@ export default function RSSReader() {
                 asChild
                 className="flex-1 text-white text-center py-2 sm:py-3 px-2 sm:px-4 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 border-2 border-purple-400 shadow-lg hover:shadow-pink-500/30 font-semibold transition-all text-[10px] sm:text-xs flex items-center justify-center gap-1"
               >
-                <a href="https://t.me/+JCGqAfWyUtRlMGVk" target="_blank" rel="noopener noreferrer">
+                <a href="https.t.me/+JCGqAfWyUtRlMGVk" target="_blank" rel="noopener noreferrer">
                   <Crown className="w-3 h-3 sm:w-4 sm:w-4" />
                   <span className="truncate">VIP ACCESS</span>
                 </a>
@@ -698,7 +699,7 @@ export default function RSSReader() {
                 variant="outline"
                 className="flex-1 text-white text-center py-2 sm:py-3 px-2 sm:px-4 rounded-full border-2 border-green-600 hover:border-green-500 hover:bg-green-500/10 transition-all bg-gradient-to-r from-teal-400 to-yellow-200 font-semibold text-[10px] sm:text-xs flex items-center justify-center gap-1"
               >
-                <a href="https://t.me/+WxLO3q9bnxJkYTZk" target="_blank" rel="noopener noreferrer">
+                <a href="https.t.me/+WxLO3q9bnxJkYTZk" target="_blank" rel="noopener noreferrer">
                   <Lock className="w-3 h-3 sm:w-4 sm:w-4" />
                   <span className="truncate">Ad-Free Zone</span>
                 </a>

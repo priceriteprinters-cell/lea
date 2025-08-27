@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useEffect } from "react"
@@ -226,7 +227,7 @@ export default function PostPage() {
                 {post.link && (
                   <Button
                     asChild
-                    className="w-full text-white text-center font-bold py-4 px-6 rounded-full shadow-lg hover:shadow-xl transition-all bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 transform hover:scale-105 border-2 border-red-500 text-lg"
+                    className="w-full text-black text-center font-bold py-4 px-6 rounded-full shadow-lg hover:shadow-xl transition-all bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-amber-500 hover:to-yellow-400 transform hover:scale-105 border-2 border-yellow-600 text-lg"
                   >
                     <a
                       href={post.link}
@@ -259,7 +260,7 @@ export default function PostPage() {
                     asChild
                     className="text-white text-center py-3 px-4 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 border-2 border-purple-400 shadow-lg hover:shadow-pink-500/30 font-semibold transition-all flex items-center justify-center gap-2"
                   >
-                    <a href="https://t.me/+JCGqAfWyUtRlMGVk" target="_blank" rel="noopener noreferrer">
+                    <a href="https.t.me/+JCGqAfWyUtRlMGVk" target="_blank" rel="noopener noreferrer">
                       <Crown className="w-4 h-4" />
                       VIP ACCESS
                     </a>
@@ -270,7 +271,7 @@ export default function PostPage() {
                     variant="outline"
                     className="text-white text-center py-3 px-4 rounded-full border-2 border-green-600 hover:border-green-500 hover:bg-green-500/10 transition-all bg-transparent flex items-center justify-center gap-2"
                   >
-                    <a href="https://t.me/+WxLO3q9bnxJkYTZk" target="_blank" rel="noopener noreferrer">
+                    <a href="https.t.me/+WxLO3q9bnxJkYTZk" target="_blank" rel="noopener noreferrer">
                       <Lock className="w-4 h-4" />
                       Ad-Free Zone
                     </a>
