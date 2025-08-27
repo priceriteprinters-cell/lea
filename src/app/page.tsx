@@ -51,7 +51,7 @@ interface RSSFeed {
 export default function RSSReader() {
   const [isMounted, setIsMounted] = useState(false)
   const [isVerified, setIsVerified] = useState<boolean | null>(null)
-  const [rssUrl, setRssUrl] = useState("https://rsshub.app/telegram/channel/admavenpost")
+  const [rssUrl, setRssUrl] = useState("https://rsshub.app/telegram/channel/admavenpost?limit=100")
   const [feed, setFeed] = useState<RSSFeed | null>(null)
   const [progressiveItems, setProgressiveItems] = useState<RSSItem[]>([])
   const [loading, setLoading] = useState(false)
@@ -582,12 +582,6 @@ export default function RSSReader() {
                 <Flame className="w-3 h-3" />
                 LEAKED
               </Badge>
-              {isRecent && (
-                <Badge className="bg-green-600 text-white font-bold text-[10px] sm:text-xs px-2 py-1 flex items-center gap-1">
-                  <Star className="w-3 h-3" />
-                  Recently Updated
-                </Badge>
-              )}
             </div>
             <div className="w-full h-48 sm:h-56 md:h-64 lg:h-72 bg-gray-900 overflow-hidden relative group">
               <img
@@ -674,7 +668,7 @@ export default function RSSReader() {
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2"
                 >
-                  <Download className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <Download className="w-3 h-3 sm:w-4 sm:w-4" />
                   {item.link.includes("mega.nz")
                     ? "GET MEGA"
                     : item.link.includes("drive.google.com")
