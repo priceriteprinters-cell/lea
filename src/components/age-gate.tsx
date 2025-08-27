@@ -4,13 +4,13 @@ import { useState, useEffect } from 'react';
 import './age-gate.css';
 
 export function AgeGate({ children }: { children: React.ReactNode }) {
-  const [isVerified, setIsVerified] = useState<boolean | null>(null);
+  const [isVerified, setIsVerified] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
     if (localStorage.getItem('ageVerified') === 'true') {
       setIsVerified(true);
-    } else {
-      setIsVerified(false);
     }
   }, []);
 
@@ -23,10 +23,11 @@ export function AgeGate({ children }: { children: React.ReactNode }) {
     window.location.href = 'https://www.google.com';
   };
 
-  if (isVerified === null) {
-    return null; // Don't render anything until the client-side check is complete
+  if (!isClient) {
+    // Render nothing on the server to avoid mismatch
+    return null;
   }
-
+  
   if (isVerified) {
     return <>{children}</>;
   }
