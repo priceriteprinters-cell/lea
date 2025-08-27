@@ -24,7 +24,7 @@ export function AgeGate({ children }: { children: React.ReactNode }) {
   };
 
   if (isVerified === null) {
-    return null;
+    return null; // Don't render anything until the client-side check is complete
   }
 
   if (isVerified) {
