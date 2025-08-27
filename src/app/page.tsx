@@ -684,7 +684,7 @@ export default function RSSReader() {
                 onClick={() => setShowTutorialModal(true)}
                 className="flex-1 text-white text-center py-2 sm:py-3 px-2 sm:px-4 rounded-full border-2 border-gray-600 hover:border-red-500 hover:bg-red-500/10 transition-all bg-gradient-to-r from-blue-500 to-cyan-500 font-semibold text-[10px] sm:text-xs flex items-center justify-center gap-1"
               >
-                <Shield className="w-3 h-3 sm:w-4 sm:w-4" />
+                <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span className="truncate">How to Download</span>
               </Button>
 
@@ -692,8 +692,8 @@ export default function RSSReader() {
                 asChild
                 className="flex-1 text-white text-center py-2 sm:py-3 px-2 sm:px-4 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 border-2 border-purple-400 shadow-lg hover:shadow-pink-500/30 font-semibold transition-all text-[10px] sm:text-xs flex items-center justify-center gap-1"
               >
-                <a href="https.t.me/+JCGqAfWyUtRlMGVk" target="_blank" rel="noopener noreferrer">
-                  <Crown className="w-3 h-3 sm:w-4 sm:w-4" />
+                <a href="https://t.me/+JCGqAfWyUtRlMGVk" target="_blank" rel="noopener noreferrer">
+                  <Crown className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span className="truncate">VIP ACCESS</span>
                 </a>
               </Button>
@@ -703,8 +703,8 @@ export default function RSSReader() {
                 variant="outline"
                 className="flex-1 text-white text-center py-2 sm:py-3 px-2 sm:px-4 rounded-full border-2 border-green-600 hover:border-green-500 hover:bg-green-500/10 transition-all bg-gradient-to-r from-teal-400 to-yellow-200 font-semibold text-[10px] sm:text-xs flex items-center justify-center gap-1"
               >
-                <a href="https.t.me/+WxLO3q9bnxJkYTZk" target="_blank" rel="noopener noreferrer">
-                  <Lock className="w-3 h-3 sm:w-4 sm:w-4" />
+                <a href="https://t.me/+WxLO3q9bnxJkYTZk" target="_blank" rel="noopener noreferrer">
+                  <Lock className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span className="truncate">Ad-Free Zone</span>
                 </a>
               </Button>

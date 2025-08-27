@@ -260,7 +260,7 @@ export default function PostPage() {
                     asChild
                     className="text-white text-center py-3 px-4 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 border-2 border-purple-400 shadow-lg hover:shadow-pink-500/30 font-semibold transition-all flex items-center justify-center gap-2"
                   >
-                    <a href="https.t.me/+JCGqAfWyUtRlMGVk" target="_blank" rel="noopener noreferrer">
+                    <a href="https://t.me/+JCGqAfWyUtRlMGVk" target="_blank" rel="noopener noreferrer">
                       <Crown className="w-4 h-4" />
                       VIP ACCESS
                     </a>
@@ -271,7 +271,7 @@ export default function PostPage() {
                     variant="outline"
                     className="text-white text-center py-3 px-4 rounded-full border-2 border-green-600 hover:border-green-500 hover:bg-green-500/10 transition-all bg-transparent flex items-center justify-center gap-2"
                   >
-                    <a href="https.t.me/+WxLO3q9bnxJkYTZk" target="_blank" rel="noopener noreferrer">
+                    <a href="https://t.me/+WxLO3q9bnxJkYTZk" target="_blank" rel="noopener noreferrer">
                       <Lock className="w-4 h-4" />
                       Ad-Free Zone
                     </a>
